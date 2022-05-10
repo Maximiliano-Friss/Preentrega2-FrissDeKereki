@@ -1,0 +1,211 @@
+@font-face {
+  font-family: 'GameboyPokemon';
+  src: url(/fonts/PokemonGb-RAeo.ttf); }
+
+@font-face {
+  font-family: 'TitlePokemon';
+  src: url(/fonts/Eviolite.ttf); }
+
+* {
+  font-family: 'GameboyPokemon', sans-serif;
+  font-size: 20px;
+  margin: 0;
+  padding: 0; }
+
+html, body {
+  height: 100%; }
+
+a {
+  text-decoration: none; }
+
+.textos {
+  font-size: 1.1em;
+  line-height: 1.6;
+  text-align: center; }
+
+form {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center; }
+
+.btn-Next {
+  color: white;
+  background-color: #C70D00;
+  border-radius: 10%;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  transition: 500ms;
+  text-align: center; }
+  .btn-Next:hover {
+    background-color: yellow; }
+
+#container {
+  background-color: gray;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 0.3fr 5fr 0.5fr;
+  grid-template-areas: "head head head" "main main main" "footer footer footer"; }
+  #container header {
+    background: url(../img/palletBackgroundTop.jpg);
+    background-size: cover;
+    background-color: black;
+    display: flex;
+    height: 3rem;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: head;
+    border-bottom: solid 4px black;
+    border-top: solid 4px black;
+    padding: 1.5rem; }
+    #container header img {
+      width: 2rem; }
+    #container header h1 {
+      font-family: 'TitlePokemon';
+      color: black;
+      font-size: 2.7rem;
+      letter-spacing: 0.1rem;
+      margin: 5% 0;
+      transition: 300ms; }
+      #container header h1:hover {
+        color: white; }
+  #container #main-container {
+    background: url(../img/grass-texture.png);
+    background-repeat: repeat;
+    background-size: 25rem;
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 1rem) 1fr;
+    grid-template-rows: 1fr repeat(4, 1rem) 1fr; }
+    #container #main-container #circle-blanco {
+      background-color: white;
+      border-radius: 50%;
+      grid-column: 2/5;
+      grid-row: 2/5;
+      width: 4rem;
+      height: 4rem;
+      z-index: 2; }
+    #container #main-container #circle-negro {
+      background-color: #020202;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      grid-column: 2/5;
+      grid-row: 2/5;
+      width: 4rem;
+      height: 4rem;
+      z-index: 3; }
+      #container #main-container #circle-negro #btn-pokeball {
+        color: white;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+        z-index: 4; }
+    #container #main-container #pokeball-rojo {
+      background-color: #C70D00;
+      grid-column: 1/7;
+      grid-row: 1/4;
+      z-index: 1; }
+    #container #main-container #pokeball-negro {
+      background-color: #020202;
+      grid-column: 1/7;
+      grid-row: 3/5;
+      z-index: 2; }
+    #container #main-container #pokeball-blanco {
+      background-color: white;
+      grid-column: 1/7;
+      grid-row: 5/7;
+      z-index: 2; }
+  #container #main-container2 {
+    background: url(../img/grass-texture.png);
+    background-repeat: repeat;
+    background-size: 25rem;
+    grid-area: main;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr); }
+    #container #main-container2 .lab-titulo {
+      grid-column: 5/-5;
+      grid-row: 3/4;
+      margin-top: 1.5rem;
+      z-index: 1; }
+    #container #main-container2 #logoPokemon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      grid-column: 4/-4;
+      grid-row: 4/-4; }
+    #container #main-container2 #welcome-container {
+      grid-column: 3/-3;
+      grid-row: 2/-2;
+      display: flex;
+      flex-flow: row-reverse nowrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5rem; }
+      #container #main-container2 #welcome-container #welcome-container-nombres {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; }
+        #container #main-container2 #welcome-container #welcome-container-nombres .inputNombres {
+          background-color: #c9c9c9;
+          font-size: 0.6rem;
+          margin: 1rem auto;
+          text-align: center;
+          padding: 0.5rem 1rem;
+          width: 20rem; }
+      #container #main-container2 #welcome-container .profOak {
+        width: 9em; }
+    #container #main-container2 .lab-container {
+      background-color: rgba(255, 255, 255, 0.75);
+      grid-column: 4/-4;
+      grid-row: 3/-3;
+      border-radius: 5rem; }
+    #container #main-container2 .lab-container-pokemon {
+      grid-column: 5/-5;
+      grid-row: 4/8;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      #container #main-container2 .lab-container-pokemon img {
+        width: 90%;
+        max-width: 10rem; }
+    #container #main-container2 .lab-container-pokeballs {
+      grid-column: 5/-5;
+      grid-row: 9/10;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around; }
+      #container #main-container2 .lab-container-pokeballs img {
+        width: 3.3rem;
+        height: 3rem; }
+  #container .cuadroGrande {
+    background-color: white;
+    border: solid 3px black;
+    border-radius: 10%; }
+  #container .cuadroGrandeLab {
+    background: url(../img/oakLab.jpg);
+    background-size: cover;
+    border-radius: 10%; }
+  #container #footer-container {
+    background: url("../img/palletBackground.jpg");
+    background-size: cover;
+    border-top: solid 3px black;
+    display: grid;
+    grid-template-columns: 0.1fr 1fr 0.1fr;
+    grid-template-rows: 1fr;
+    grid-area: footer; }
+    #container #footer-container .redPikachu {
+      margin: 1rem auto;
+      grid-column: 2/3;
+      grid-row: 1/2;
+      width: 7rem; }
+    #container #footer-container .audioOff {
+      grid-column: 3/4;
+      grid-row: 1/2;
+      width: 1.5rem;
+      margin: auto; }
