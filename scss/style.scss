@@ -60,7 +60,6 @@ form{
     "footer footer footer";
     
     header{
-        // background-color: #C70D00;
         background: url(../img/palletBackgroundTop.jpg);
         background-size: cover;
         background-color: black;
@@ -175,6 +174,7 @@ form{
                 max-width: 10rem;
             }
         }
+        
         #logoPokemon-container{
             display: flex;
             justify-content: center;
@@ -193,7 +193,6 @@ form{
             grid-row: 2/-2;
             min-width: 34rem;
             max-height: 21rem;
-            
         }
         
         #welcome-container-nombres{
@@ -248,9 +247,71 @@ form{
                     height: 3rem;
                 }
             }
-
-            
         }
+
+    }
+    
+    #main-container3{
+        @extend #main-container2;
+        grid-area: main;
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        grid-template-rows: repeat(12,2.3rem);
+        
+        .battle-container{
+            background-color: #dfe1da;
+            border-radius: 0.3rem;
+            grid-column: 1/-1;
+            grid-row: 1/-2;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(12,1fr);
+            grid-template-rows: repeat(12,1fr);
+            width: 700px;
+            height: 467.09px;
+            position: relative;
+            
+            .battle-texto{
+                grid-column: 1/-1;
+                grid-row: 10/-2;
+                width: 100%;
+                margin-bottom: 0;
+                margin-top: -1.3rem;
+                z-index: 2;
+            }
+
+            #battle-ovalo-usuario{
+                grid-column: 2/7;
+                grid-row: 8/11;
+                width: 14rem;
+                margin-top: 1rem;
+                z-index: 1;
+            }
+
+            #battle-ovalo-enemigo{
+                @extend #battle-ovalo-usuario;
+                grid-column: 7/13;
+                grid-row: 4/7;
+                position: absolute;
+                right: 0;
+            }
+
+            #battle-container-infoUsuario{
+                grid-column: 8/13;
+                grid-row: 7/10;
+                width: 239px;
+                height: 83px;
+                margin-left: 2rem;
+            }
+
+            #battle-container-infoEnemigo{
+                grid-column: 2/7;
+                grid-row: 2/8;
+                width: 228px;
+                height: 66px;
+            }
+        }
+
     }
 
     .cuadroGrande{
