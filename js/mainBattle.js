@@ -114,9 +114,9 @@ function cargarMain2() {
         
         setTimeout(function () {
             logoPokemonContainer.remove();
-            welcomeContainer.appendChild(welcomeContainerNombres);
             welcomeContainer.classList.add('cuadroGrande');
-            welcomeContainer.appendChild(profOak);
+            mainContainer2.appendChild(welcomeContainerNombres);
+            mainContainer2.appendChild(profOak);
             profOak.setAttribute('src', '../img/profOak.png');
             profOak.classList.add('profOak', 'animate__animated', 'animate__zoomIn');
 
@@ -208,10 +208,10 @@ btnLab.onclick = () => {
         setTimeout(function(){
             mainContainer2.appendChild(labContainer);
             mainContainer2.appendChild(labContainerPokemon);
-            mainContainer2.appendChild(labContainerPokeballs);
-            mainContainer2.appendChild(labTitulo);
+            labContainer.appendChild(labContainerPokeballs);
+            labContainer.appendChild(labTitulo);
             labTitulo.innerHTML = 'Escoge una pokeball';
-            labTitulo.classList.add('textos', 'lab-titulo');
+            labTitulo.classList.add('textos');
             labContainer.classList.add('lab-container', 'animate__animated', 'animate__fadeIn');
             labContainerPokemon.classList.add('lab-container-pokemon', 'animate__animated', 'animate__fadeIn');
             labContainerPokeballs.classList.add('lab-container-pokeballs', 'animate__animated', 'animate__fadeIn');

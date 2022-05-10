@@ -125,50 +125,10 @@ form {
     grid-area: main;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr); }
-    #container #main-container2 .lab-titulo {
-      grid-column: 5/-5;
-      grid-row: 3/4;
-      margin-top: 1.5rem;
-      z-index: 1; }
-    #container #main-container2 #logoPokemon-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      grid-column: 4/-4;
-      grid-row: 4/-4; }
-      #container #main-container2 #logoPokemon-container img {
-        width: 15rem; }
-    #container #main-container2 #welcome-container {
-      grid-column: 3/-3;
-      grid-row: 2/-2;
-      display: flex;
-      flex-flow: row-reverse nowrap;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 5rem; }
-      #container #main-container2 #welcome-container #welcome-container-nombres {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center; }
-        #container #main-container2 #welcome-container #welcome-container-nombres .inputNombres {
-          background-color: #c9c9c9;
-          font-size: 0.6rem;
-          margin: 1rem auto;
-          text-align: center;
-          padding: 0.5rem 1rem;
-          width: 20rem; }
-      #container #main-container2 #welcome-container .profOak {
-        width: 9em; }
-    #container #main-container2 .lab-container {
-      background-color: rgba(255, 255, 255, 0.75);
-      grid-column: 4/-4;
-      grid-row: 3/-3;
-      border-radius: 5rem; }
+    grid-template-rows: repeat(12, 2.1rem); }
     #container #main-container2 .lab-container-pokemon {
-      grid-column: 5/-5;
-      grid-row: 4/8;
+      grid-column: 6/8;
+      grid-row: 4/9;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -176,15 +136,60 @@ form {
       #container #main-container2 .lab-container-pokemon img {
         width: 90%;
         max-width: 10rem; }
-    #container #main-container2 .lab-container-pokeballs {
-      grid-column: 5/-5;
-      grid-row: 9/10;
+    #container #main-container2 #logoPokemon-container {
       display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-around; }
-      #container #main-container2 .lab-container-pokeballs img {
-        width: 3.3rem;
-        height: 3rem; }
+      justify-content: center;
+      align-items: center;
+      grid-column: 4/-4;
+      grid-row: 4/-4; }
+      #container #main-container2 #logoPokemon-container img {
+        width: 20rem;
+        overflow: hidden; }
+    #container #main-container2 #welcome-container {
+      grid-column: 3/-3;
+      grid-row: 2/-2;
+      min-width: 34rem;
+      max-height: 21rem; }
+    #container #main-container2 #welcome-container-nombres {
+      grid-column: 7/10;
+      grid-row: 2/-3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      #container #main-container2 #welcome-container-nombres .inputNombres {
+        background-color: #c9c9c9;
+        font-size: 0.6rem;
+        margin: 1rem auto;
+        text-align: center;
+        padding: 0.5rem 1rem;
+        width: 20rem; }
+    #container #main-container2 .profOak {
+      grid-column: 4/6;
+      grid-row: 3/11;
+      width: 9em; }
+    #container #main-container2 .lab-container {
+      background-color: rgba(255, 255, 255, 0.75);
+      grid-column: 3/-3;
+      grid-row: 2/-2;
+      border-radius: 5rem;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.5rem; }
+      #container #main-container2 .lab-container h2 {
+        margin-top: 1.5rem; }
+      #container #main-container2 .lab-container .lab-container-pokeballs {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 1rem;
+        width: 70%; }
+        #container #main-container2 .lab-container .lab-container-pokeballs img {
+          width: 3.3rem;
+          height: 3rem; }
   #container .cuadroGrande {
     background-color: white;
     border: solid 3px black;
