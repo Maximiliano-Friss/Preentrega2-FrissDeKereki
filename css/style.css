@@ -137,6 +137,8 @@ form {
       align-items: center;
       grid-column: 4/-4;
       grid-row: 4/-4; }
+      #container #main-container2 #logoPokemon-container img {
+        width: 15rem; }
     #container #main-container2 #welcome-container {
       grid-column: 3/-3;
       grid-row: 2/-2;

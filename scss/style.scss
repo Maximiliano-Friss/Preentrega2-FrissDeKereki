@@ -175,6 +175,10 @@ form{
             align-items: center;
             grid-column: 4/-4;
             grid-row: 4/-4;
+
+            img {
+                width: 15rem;
+            }
         }
 
         #welcome-container{

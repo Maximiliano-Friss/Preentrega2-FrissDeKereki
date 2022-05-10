@@ -106,7 +106,6 @@ function cargarMain2() {
         logoPokemonImg.setAttribute('src', '../img/pokemonLogo.gif');
         logoPokemonContainer.appendChild(logoPokemonImg);
         logoPokemonImg.classList.add('animate__animated', 'animate__fadeInDown', 'animate__slower');
-        logoPokemonImg.style.width = '80%';
         
         setTimeout(function () {
             logoPokemonImg.classList.remove('animate__fadeInDown');
@@ -114,6 +113,7 @@ function cargarMain2() {
         }, 7000);
         
         setTimeout(function () {
+            logoPokemonContainer.remove();
             welcomeContainer.appendChild(welcomeContainerNombres);
             welcomeContainer.classList.add('cuadroGrande');
             welcomeContainer.appendChild(profOak);
