@@ -128,7 +128,7 @@ setTimeout(function () {
         msgWelcome.innerHTML = `Hola!<br>Soy el Profesor Oak.<br> Todo listo para comenzar?`;
         msgWelcome.classList.add('textos', 'animate__animated', 'animate__zoomIn');
         welcomeContainerNombres.appendChild(btnNext);
-        btnNext.innerHTML = 'Continuar'
+        btnNext.innerHTML = 'Continuar';
         btnNext.classList.add('textos', 'btn-Next', 'animate__animated', 'animate__zoomIn');
     }, 10000);
 }, 4000);
@@ -231,8 +231,7 @@ function mostrarPokeballs() {
         imgPokeball.src = '../img/choosepokeball.png';
         labContainerPokeballs.appendChild(imgPokeball);
         
-        imgPokeball.onmouseenter = (evt) => {
-            evt.target = true;
+        imgPokeball.onmouseenter = () => {
             imgPokeball.style.cursor = 'pointer';
             labContainerPokemon.innerHTML ='';
             imgPokeball.classList.add('animate__animated', 'animate__bounce');

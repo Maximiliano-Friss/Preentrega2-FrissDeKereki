@@ -253,7 +253,6 @@ form{
                 }
             }
         }
-
     }
     
     #main-container3{
@@ -286,6 +285,16 @@ form{
                 z-index: 4;
             }
 
+            .p-infoPoder {
+                grid-column: 10/12;
+                grid-row: 10/13;
+                font-size: 1rem;
+                margin-left: -0.6rem;
+                text-align: center;
+            }
+            
+            
+
             .btn-Continue {
                 grid-column: 11/12;
                 grid-row: 11/12;
@@ -294,6 +303,33 @@ form{
                 right: 0;
                 width: 1rem;
                 z-index: 5;
+            }
+
+            .btn-power-0{
+                color: black;
+                background: none;
+                border: none;
+                font-size: 0.8rem;
+                grid-column: 1/5;
+                grid-row: 10/11;
+                margin-left: 1.3rem;
+                text-align: left;
+                z-index: 5;
+            }
+
+            .btn-power-1{
+                @extend .btn-power-0;
+                grid-column: 5/9;
+            }
+
+            .btn-power-2{
+                @extend .btn-power-0;
+                grid-row: 11/12;
+                margin-top: 0.8rem;
+
+            }.btn-power-3{
+                @extend .btn-power-2;
+                grid-column: 5/9;
             }
 
             .battle-texto{
@@ -327,6 +363,15 @@ form{
                 width: 239px;
                 height: 83px;
                 margin-left: 2rem;
+                position: relative;
+
+                .p-pokemon1{
+                    font-size: 0.7rem;
+                    position: absolute;
+                    left: 1.5rem;
+                    top: 0.3rem;
+                    letter-spacing: 0;
+                }
             }
 
             #battle-pokeballs-usuario{
@@ -356,6 +401,15 @@ form{
                 grid-row: 2/8;
                 width: 228px;
                 height: 66px;
+                position: relative;
+
+                .p-pokemon2{
+                    font-size: 0.7rem;
+                    position: absolute;
+                    left: 0.5rem;
+                    top: 0.3rem;
+                    letter-spacing: 0;
+                }
             }
 
             #battle-pokeballs-enemigo{
