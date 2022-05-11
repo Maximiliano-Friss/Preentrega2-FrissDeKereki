@@ -61,6 +61,8 @@ class Pokemon{
         this.poderes = poderes;     //Esto sera el array de poderes.
         this.entrenador = entrenador;
         this.source = `../img/choose${this.nombre}.gif`;
+        this.front = `../img/front${this.nombre}.png`;
+        this.back = `../img/back${this.nombre}.png`;
     }
 }
 
@@ -77,62 +79,60 @@ const OPCIONES_POKEMON = [CHARMANDER2, SQUIRTLE2, BULBASAUR2];
 const OPONENTE_AL_AZAR = Math.floor(Math.random()*OPCIONES_POKEMON.length);
 localStorage.setItem('POKEMON_ENEMIGO', JSON.stringify(OPCIONES_POKEMON[OPONENTE_AL_AZAR]));
 
-mainContainer2.onload = cargarMain2();
+//MUSICA
+footerContainer.appendChild(audioOff);
+audioOff.classList.add('audioOff');
+const currentSound = localStorage.getItem('SOUND');
 
-function cargarMain2() {
-    footerContainer.appendChild(audioOff);
-    audioOff.classList.add('audioOff');
-    const currentSound = localStorage.getItem('SOUND');
-
-    if(parseInt(currentSound) || currentSound === null) {
-        theme.play();
-        audioOff.setAttribute('src', '../img/audiooff.png');
-    } else {
-        theme.pause();
-        audioOff.setAttribute('src', '../img/mute.png');
-    }
-
-    audioOff.onclick = () => {
-        const currentSound = localStorage.getItem('SOUND');
-        if (parseInt(currentSound) || currentSound === null) {
-            localStorage.setItem('SOUND', 0);
-            theme.pause()
-            audioOff.setAttribute('src', '../img/mute.png');
-        } else {
-            localStorage.setItem('SOUND', 1);
-            theme.play()
-            audioOff.setAttribute('src', '../img/audiooff.png');
-        }
-    };
-    audioOff.style.cursor = 'pointer';
-
-    setTimeout(function () {
-        logoPokemonImg.setAttribute('src', '../img/pokemonLogo.gif');
-        logoPokemonContainer.appendChild(logoPokemonImg);
-        logoPokemonImg.classList.add('animate__animated', 'animate__fadeInDown', 'animate__slower');
-        
-        setTimeout(function () {
-            logoPokemonImg.classList.remove('animate__fadeInDown');
-            logoPokemonImg.classList.add('animate__fadeOutDown');
-        }, 7000);
-        
-        setTimeout(function () {
-            logoPokemonContainer.remove();
-            welcomeContainer.classList.add('cuadroGrande');
-            mainContainer2.appendChild(welcomeContainerNombres);
-            mainContainer2.appendChild(profOak);
-            profOak.setAttribute('src', '../img/profOak.png');
-            profOak.classList.add('profOak', 'animate__animated', 'animate__zoomIn');
-
-            welcomeContainerNombres.appendChild(msgWelcome);
-            msgWelcome.innerHTML = `Hola!<br>Soy el Profesor Oak.<br> Todo listo para comenzar?`;
-            msgWelcome.classList.add('textos', 'animate__animated', 'animate__zoomIn');
-            welcomeContainerNombres.appendChild(btnNext);
-            btnNext.innerHTML = 'Continuar'
-            btnNext.classList.add('textos', 'btn-Next', 'animate__animated', 'animate__zoomIn');
-        }, 10000);
-    }, 4000);
+if(parseInt(currentSound) || currentSound === null) {
+    theme.play();
+    audioOff.setAttribute('src', '../img/audiooff.png');
+} else {
+    theme.pause();
+    audioOff.setAttribute('src', '../img/mute.png');
 }
+
+audioOff.onclick = () => {
+    const currentSound = localStorage.getItem('SOUND');
+    if (parseInt(currentSound) || currentSound === null) {
+        localStorage.setItem('SOUND', 0);
+        theme.pause()
+        audioOff.setAttribute('src', '../img/mute.png');
+    } else {
+        localStorage.setItem('SOUND', 1);
+        theme.play()
+        audioOff.setAttribute('src', '../img/audiooff.png');
+    }
+};
+audioOff.style.cursor = 'pointer';
+
+setTimeout(function () {
+    logoPokemonImg.setAttribute('src', '../img/pokemonLogo.gif');
+    logoPokemonContainer.appendChild(logoPokemonImg);
+    logoPokemonImg.classList.add('animate__animated', 'animate__fadeInDown', 'animate__slower');
+    
+    setTimeout(function () {
+        logoPokemonImg.classList.remove('animate__fadeInDown');
+        logoPokemonImg.classList.add('animate__fadeOutDown');
+    }, 7000);
+    
+    setTimeout(function () {
+        logoPokemonContainer.remove();
+        welcomeContainer.classList.add('cuadroGrande');
+        mainContainer2.appendChild(welcomeContainerNombres);
+        mainContainer2.appendChild(profOak);
+        profOak.setAttribute('src', '../img/profOak.png');
+        profOak.classList.add('profOak', 'animate__animated', 'animate__zoomIn');
+
+        welcomeContainerNombres.appendChild(msgWelcome);
+        msgWelcome.innerHTML = `Hola!<br>Soy el Profesor Oak.<br> Todo listo para comenzar?`;
+        msgWelcome.classList.add('textos', 'animate__animated', 'animate__zoomIn');
+        welcomeContainerNombres.appendChild(btnNext);
+        btnNext.innerHTML = 'Continuar'
+        btnNext.classList.add('textos', 'btn-Next', 'animate__animated', 'animate__zoomIn');
+    }, 10000);
+}, 4000);
+
 
 btnNext.addEventListener('click', () => {
     msgWelcome.classList.remove('animate__zoomIn');

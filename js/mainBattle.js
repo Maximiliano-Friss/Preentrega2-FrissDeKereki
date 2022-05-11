@@ -1,44 +1,53 @@
-
 const pokemon1 = JSON.parse(localStorage.getItem('POKEMON_ELEGIDO'));
 const pokemon2 = JSON.parse(localStorage.getItem('POKEMON_ENEMIGO'));
-console.log(pokemon1.nombre);
-console.log(pokemon2.salud);
+console.log(pokemon1.back);
+const USUARIO = localStorage.getItem('USUARIO');
+const ENEMIGO = localStorage.getItem('ENEMIGO');
+const imgUsuario = document.getElementById('battle-Usuario');
+const imgEnemigo = document.getElementById('battle-Enemigo');
+
+const backPokemon1 = document.createElement('img');
+backPokemon1.src = pokemon1.back;
+backPokemon1.classList.add('battle-pokemon1', 'animate__animated', 'animate__fadeInUp');
+
+const frontPokemon2 = document.createElement('img');
+frontPokemon2.src = pokemon2.front;
+frontPokemon2.classList.add('battle-pokemon2', 'animate__animated', 'animate__fadeInUp');
+
+const battleContainer = document.querySelector('.battle-container');
+const btnContinue = document.querySelector('.btn-Continue');
+//Variables de texto
+const msg0 = document.getElementById('msg-0');
 
 
+
+msg0.innerHTML = `${ENEMIGO} te ha desafiado a una batalla Pokémon!`;
+btnContinue.style.cursor = 'pointer';
+btnContinue.onclick = batalla0;
+
+function batalla0() {
+    msg0.innerHTML = `${pokemon1.nombre} yo te elijo!`;
+    btnContinue.onclick = () => {
+        imgUsuario.classList.add('animate__animated', 'animate__zoomOutRight');
+        imgEnemigo.classList.add('animate__animated', 'animate__zoomOutLeft');
+
+        setTimeout(() => {
+            imgUsuario.remove();
+            imgEnemigo.remove();
+            battleContainer.appendChild(backPokemon1);
+            battleContainer.appendChild(frontPokemon2);
+        }, 1000);
+    }
+}
 
 //     function jugar() {
-//     let ingresarPokemon = prompt('Selecciona un pokémon ingresando su nombre. Opciones: Charmander, Squirtle o Bulbasaur.').toUpperCase();
-//     let pokemon1 = '';
-    
-//     while(!pokemon1){
-//         switch(ingresarPokemon){
-//             case "CHARMANDER":
-//                 pokemon1 = CHARMANDER;
-//                 break;
-//             case "SQUIRTLE":
-//                 pokemon1 = SQUIRTLE;
-//                 break;
-//             case "BULBASAUR":
-//                 pokemon1 = BULBASAUR;
-//                 break;
-//             default:
-//                 ingresarPokemon = prompt('Valor incorrecto. Elegir una de estas opciones: Charmander, Squirtle o Bulbasaur.').toUpperCase();
-//         }
-//     }
-    
-//     console.log(`${localStorage.getItem('USUARIO')} ha escogido a ${pokemon1.nombre}!`);
-    
+
 //     let poder1 = '';
 //     let poder2 = '';
 //     let f1 = 1;
 //     let f2 = 1;
 //     let totalDamage1 = 0;
 //     let totalDamage2 = 0;
-    
-//     //OPONENTE ELEGIDO
-//     const OPONENTE_AL_AZAR = Math.floor(Math.random()*OPCIONES_POKEMON.length);
-//     const pokemon2 = OPCIONES_POKEMON[OPONENTE_AL_AZAR];
-//     console.log(`${localStorage.getItem('ENEMIGO')} ha escogido a ${pokemon2.nombre}!`);
     
 //     const poderAlAzar = (poke) => Math.floor(Math.random()*poke.poderes.length);
 //     const pokemonVivos = () => pokemon1.salud > 0 && pokemon2.salud > 0;
