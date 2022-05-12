@@ -38,10 +38,14 @@ btnContinue.style.cursor = 'pointer';
 btnContinue.onclick = showPokemon;
 
 const pokemonVivos = () => pokemon1.salud > 0 && pokemon2.salud > 0;
+const poderAlAzar = (poke) => Math.floor(Math.random()*poke.poderes.length);
 
-
-
-
+let poder1 = '';
+let poder2 = '';
+let f1 = 1;
+let f2 = 1;
+let totalDamage1 = 0;
+let totalDamage2 = 0;
 
 function showPokemon() {
     msg0.innerHTML = `${pokemon1.nombre} yo te elijo!`;
@@ -62,37 +66,10 @@ function showPokemon() {
             containerInfoUsuario.appendChild(nombrePokemon1);
             containerInfoEnemigo.appendChild(infoEnemigo);
             containerInfoEnemigo.appendChild(nombrePokemon2);
+            btnContinue.onclick = start;
         }, 1000);
-
-        // btnContinue.onclick = selectPowerScreen;
-        
     }
 }
-
-function selectPowerScreen() {
-    btnContinue.remove();
-    msg0.innerHTML = '';
-    battleTexto.src = '../img/battlePoderesBox.png';
-
-    for (const poder of pokemon1.poderes){
-        const btnPower = document.createElement('button');
-        btnPower.innerHTML = poder.identificador;
-        battleContainer.appendChild(btnPower);
-        btnPower.classList.add(`btn-power-${pokemon1.poderes.indexOf(poder)}`);
-
-        btnPower.onmouseover = () => {
-            battleContainer.appendChild(infoPoder);
-            infoPoder.classList.add('p-infoPoder');
-            infoPoder.innerHTML = `TIPO: ${poder.type}`;
-        }
-        btnPower.onmouseleave = () => {
-            infoPoder.innerHTML = '';
-        }
-
-        btnPower.onclick = start;
-    }
-}
-
 
 function start() {
     while(pokemonVivos()){
@@ -101,85 +78,92 @@ function start() {
             batalla('pokemon2');
         }
     }
+    msg0.innerHTML = `La batalla ha finalizado! ${pokemon1.salud > pokemon2.salud ? `${USUARIO} ha ganado!` : `${ENEMIGO} ha ganado!`}`;
 }
 
 
-let poder1 = '';
-let poder2 = '';
-let f1 = 1;
-let f2 = 1;
-let totalDamage1 = 0;
-let totalDamage2 = 0;
+function batalla(poke){
+    switch(poke){
+        case 'pokemon1':
+            btnContinue.remove();
+            msg0.innerHTML = '';
+            battleTexto.src = '../img/battlePoderesBox.png';
+            for (const poder of pokemon1.poderes){
+                const btnPower = document.createElement('button');
+                btnPower.innerHTML = poder.identificador;
+                battleContainer.appendChild(btnPower);
+                btnPower.classList.add(`btn-power-${pokemon1.poderes.indexOf(poder)}`);
+            
+                btnPower.onmouseover = () => {
+                    battleContainer.appendChild(infoPoder);
+                    infoPoder.classList.add('p-infoPoder');
+                    infoPoder.innerHTML = `TIPO: ${poder.type}`;
+                }
+                btnPower.onmouseleave = () => {
+                    infoPoder.innerHTML = '';
+                }
+            
+                btnPower.onclick = () => {
+                    poder1 = poder;
+                    battleTexto.src = '../img/battleTextBox.png';
+                    msg0.innerHTML = `${pokemon1.nombre} usó ${poder1.identificador}!`;
+                    battleContainer.appendChild(btnContinue);
+                    if(lograAtacar(poder1, pokemon1, USUARIO)){
+                        btnContinue.onclick = () => {
+                            totalDamage1 = Math.round(f1*(poder1.damage/pokemon2.defensa));
+                            pokemon2.salud -= totalDamage1;
+                            pokemon2.salud = pokemon2.salud > 0 ? pokemon2.salud : 0;
+                            f2 *= poder1.efectoEnAtaqueEnemigo;
+                            pokemon1.defensa *= poder1.efectoEnDefensaPropia;
+                            pokemon2.poderes[poderAlAzar(pokemon2)].probabilidadExito *= poder1.efectoEnExitoEnemigo;
+                            msg0.innerHTML = `${pokemon2.nombre} enemigo recibe ${totalDamage1} de daño!`;
+                            // CAMBIAR ESTO POR BARRA VERDE ACHICANDOSE msg0.innerHTML = `${pokemon2.nombre} de ${ENEMIGO} recibe ${totalDamage1} de daño.`
+                        }
+                    } else {
+                        btnContinue.onclick = () => {
+                            msg0.innerHTML = `Pero ${pokemon1.nombre} falló!`;
+                        }
+                    }
+                };
+            }
+            break;
 
-const poderAlAzar = (poke) => Math.floor(Math.random()*poke.poderes.length);
+        case 'pokemon2':
+            btnContinue.onclick = () => {
+                poder2 = pokemon2.poderes[poderAlAzar(pokemon2)];
+                msg0.innerHTML = `${pokemon2.nombre} enemigo usó ${poder2.identificador}!`;
+                if(lograAtacar(poder2, pokemon2, ENEMIGO)){
+                    btnContinue.onclick = () => {
+                        totalDamage2 = Math.round(f2*(poder2.damage/pokemon1.defensa));
+                        pokemon1.salud -= totalDamage2;
+                        pokemon1.salud = pokemon1.salud > 0 ? pokemon1.salud : 0;
+                        f1 *= poder2.efectoEnAtaqueEnemigo;
+                        pokemon2.defensa *= poder2.efectoEnDefensaPropia;
+                        pokemon1.poderes[poderAlAzar(pokemon1)].probabilidadExito *= poder2.efectoEnExitoEnemigo;
+                        msg0.innerHTML = `${pokemon1.nombre} recibe ${totalDamage2} de daño!`;
+                        // CAMBIAR ESTO POR BARRA VERDE ACHICANDOSE console.log(`${pokemon1.nombre} recibe ${totalDamage2} de daño.`);
+                    }
+                }
+            }
+            break;
 
+        default:
+            msg0.innerHTML = 'Algo ha salido mal.';
+    }
+}
 
-//     function damage1(poder) {
-//         totalDamage1 = Math.round(f1*(poder.damage/pokemon2.defensa));
-//         pokemon2.salud -= totalDamage1;
-//         pokemon2.salud = pokemon2.salud > 0 ? pokemon2.salud : 0;
-//         f2 *= poder.efectoEnAtaqueEnemigo;
-//         pokemon1.defensa *= poder.efectoEnDefensaPropia;
-//         pokemon2.poderes[poderAlAzar(pokemon2)].probabilidadExito *= poder.efectoEnExitoEnemigo;
-//     }
-    
-//     function damage2(poder) {
-//         totalDamage2 = Math.round(f2*(poder.damage/pokemon1.defensa));
-//         pokemon1.salud -= totalDamage2;
-//         pokemon1.salud = pokemon1.salud > 0 ? pokemon1.salud : 0;
-//         f1 *= poder.efectoEnAtaqueEnemigo;
-//         pokemon2.defensa *= poder.efectoEnDefensaPropia;
-//         pokemon1.poderes[poderAlAzar(pokemon1)].probabilidadExito *= poder.efectoEnExitoEnemigo;
-//     }
-    
-//     function lograAtacar(poder, poke, user){
-//         let fallar = Math.random();
-//         if(fallar < poder.probabilidadExito) {
-//             console.log(`${poke.nombre} de ${localStorage.getItem('USUARIO')} utiliza ${poder.identificador}!`);
-//             return true;
-//         } else {
-//             console.log(`Pero ${poke.nombre} de ${localStorage.getItem('USUARIO')} falló!`);
-//             return false;
-//         }
-//     }
-    
-//     function batalla(poke){
-//         console.log('pokemon1', pokemon1);
-//         console.log('pokemon2', pokemon2);
-//         switch(poke){
-//             case 'pokemon1':
-//                 console.log('Selecciona un movimiento de ataque. OPCIONES:');
-//                 pokemon1.poderes.forEach((poder, index) => console.log(`${index + 1}: ${poder.identificador}`)); 
-//                 numeroPoder1 = parseInt(prompt('Elige el número (1 a 4) del movimiento a utilizar.'));
-    
-//                 while (isNaN(numeroPoder1) || numeroPoder1 <= 0 || numeroPoder1 > 4) {
-//                     numeroPoder1 = parseInt(prompt("El valor ingresado no es correcto. Elige el número (1 a 4) del movimiento a utilizar."));
-//                 }
-    
-//                 poder1 = pokemon1.poderes[numeroPoder1 - 1];
-//                 console.log(`Has seleccionado ${poder1.identificador}.`);
-//                 if(lograAtacar(poder1, pokemon1, localStorage.getItem('USUARIO'))){
-//                     damage1(poder1);
-//                 }
-//                 console.log(`${pokemon2.nombre} de ${localStorage.getItem('ENEMIGO')} recibe ${totalDamage1} de daño.`);
-//                 break;
-    
-//             case 'pokemon2':
-//                 poder2 = pokemon2.poderes[poderAlAzar(pokemon2)];
-//                 console.log(`${pokemon2.nombre} de ${localStorage.getItem('ENEMIGO')} elige ${poder2.identificador}!`);
-//                 if(lograAtacar(poder2, pokemon2, localStorage.getItem('ENEMIGO'))){
-//                     damage2(poder2);
-//                 }
-//                 console.log(`${pokemon1.nombre} recibe ${totalDamage2} de daño.`);
-//                 break;
-    
-//             default:
-//                 console.log('Algo ha salido mal.');
-//         }
-//     }
-    
-//         
-//         console.log(`La batalla ha finalizado! ${pokemon1.salud > pokemon2.salud ? `${localStorage.getItem('USUARIO')} ha ganado!` : `${localStorage.getItem('ENEMIGO')} ha ganado!`}`);
-//     }
-// }
-// })
+function lograAtacar(poder, poke, jugador){
+    let fallar = Math.random();
+    if(fallar < poder.probabilidadExito) {
+        btnContinue.onclick = () => {
+            msg0.innerHTML = `${poke.nombre} de ${jugador} utiliza ${poder.identificador}!`;
+            return true;
+        }
+    } else {
+        btnContinue.onclick = () => {
+            msg0.innerHTML = `Pero ${poke.nombre} de ${jugador} falló!`;
+            return false;
+        }
+    }
+}
+
