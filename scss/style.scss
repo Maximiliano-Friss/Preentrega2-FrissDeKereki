@@ -8,11 +8,6 @@
     src: url(/fonts/Eviolite.ttf);
 }
 
-@font-face {
-    font-family: 'FireRedPokemon';
-    src: url(/fonts/pokemonFire.ttf);
-}
-
 * {
     font-family: 'GameboyPokemon', sans-serif; 
     font-size: 20px;
@@ -50,7 +45,8 @@ form{
     text-align: center;
 
     &:hover {
-        background-color: yellow;
+        color: black;
+        background-color: #ff2b1c;
     }
 }
 #container {
@@ -281,7 +277,7 @@ form{
                 grid-column: 2/12;
                 grid-row: 10/12;
                 letter-spacing: 0.3rem;
-                margin-top: 0.3rem;
+                margin-top: 0.6rem;
                 z-index: 4;
             }
 
@@ -292,8 +288,6 @@ form{
                 margin-left: -0.6rem;
                 text-align: center;
             }
-            
-            
 
             .btn-Continue {
                 grid-column: 11/12;
@@ -444,7 +438,6 @@ form{
         background-size: cover;
         border-radius: 10%;
     }
-
 
     #footer-container{
         background: url('../img/palletBackground.jpg');

@@ -6,10 +6,6 @@
   font-family: 'TitlePokemon';
   src: url(/fonts/Eviolite.ttf); }
 
-@font-face {
-  font-family: 'FireRedPokemon';
-  src: url(/fonts/pokemonFire.ttf); }
-
 * {
   font-family: 'GameboyPokemon', sans-serif;
   font-size: 20px;
@@ -42,7 +38,8 @@ form {
   transition: 500ms;
   text-align: center; }
   .btn-Next:hover {
-    background-color: yellow; }
+    color: black;
+    background-color: #ff2b1c; }
 
 #container {
   background-color: gray;
@@ -217,7 +214,7 @@ form {
         grid-column: 2/12;
         grid-row: 10/12;
         letter-spacing: 0.3rem;
-        margin-top: 0.3rem;
+        margin-top: 0.6rem;
         z-index: 4; }
       #container #main-container3 .battle-container .p-infoPoder {
         grid-column: 10/12;
